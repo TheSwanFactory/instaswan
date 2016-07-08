@@ -81,7 +81,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'rspec-rails'
+  gem 'rspec-rails'#, "~> 3.4.1"
 end
 
 group :production do
