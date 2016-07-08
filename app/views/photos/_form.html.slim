@@ -1,0 +1,11 @@
+= simple_form_for(@photo) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :base_url
+    = f.input :filter
+    = f.input :final_url
+
+  .form-actions
+    = f.button :submit
