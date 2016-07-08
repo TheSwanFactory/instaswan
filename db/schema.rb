@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160708052433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -625,6 +625,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["email"], name: "invitations_invitation_email_key", unique: true, using: :btree
     t.index ["inviter_id"], name: "invitations_invitation_d9678107", using: :btree
     t.index ["key"], name: "invitations_invitation_key_key", unique: true, using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "name"
+    t.string   "base_url"
+    t.string   "filter"
+    t.string   "final_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products_product", force: :cascade do |t|
