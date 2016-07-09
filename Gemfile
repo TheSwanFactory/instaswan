@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.3.1'
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
@@ -16,6 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'aws-sdk', '~> 2'
+gem "rack-timeout"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
