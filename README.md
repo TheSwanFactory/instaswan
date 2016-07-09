@@ -1,24 +1,15 @@
-# README
+# instaswan
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Instaswan is a Ruby on Rails clone developed for the Firehose code school.
 
-Things you may want to cover:
+# Technologies
+* Rails apps
+* Ruby on Rails 5.0 pre-release
+* Heroku
+* Puma 
+* S3
 
-* Ruby version
+# Tutorials
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+* https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails
