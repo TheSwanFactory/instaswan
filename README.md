@@ -13,3 +13,4 @@ Instaswan is a Ruby on Rails clone developed for the Firehose code school.
 
 * https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
 * https://devcenter.heroku.com/articles/direct-to-s3-image-uploads-in-rails
+* http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html#how-do-i-enable-cors
