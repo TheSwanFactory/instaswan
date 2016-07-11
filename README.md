@@ -17,24 +17,24 @@ Instaswan is a Ruby on Rails clone developed for the Firehose code school.
 ** http://stackoverflow.com/questions/30350785/trying-to-set-up-amazons-s3-bucket-403-forbidden-error-setting-permissions
 ** http://stackoverflow.com/questions/30358220/writing-an-iam-policy-and-cors-configuration-for-amazon-s3
 
-Note: The default Heroku instructions are incorrect, in that you also need to setup a Bucket Policy.
+Note: The default Heroku instructions are incorrect. You need to specify your explicit region, and setup a Bucket Policy:
 ```
 {
+	"Version": "2008-10-17",
 	"Statement": [
 		{
-			"Sid": "AllowPublicRead",
-			"Principal": "*",
-			"Action": [
-				"s3:ListBucket",
-				"s3:GetObject",
-				"s3:PutObject",
-				"s3:PutObjectAcl",
-				"s3:DeleteObject"
-			],
+			"Sid": "AllowFileUpload",
 			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::XXXXXXXX:user/instaswan"
+			},
+			"Action": [
+				"s3:PutObject",
+				"s3:PutObjectAcl"
+			],
 			"Resource": [
-				"arn:aws:s3:::instaswan-dev/*",
-				"arn:aws:s3:::instaswan-dev"
+				"arn:aws:s3:::instaswan-dev",
+				"arn:aws:s3:::instaswan-dev/*"
 			]
 		}
 	]
