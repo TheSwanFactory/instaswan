@@ -1,11 +1,13 @@
-= simple_form_for(@photo) do |f|
+= simple_form_for(@photo,
+   html: { class: "directUpload" },
+   data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host },
+ ) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
-    = f.input :base_url
+    = f.input :base_url, :as => :file
     = f.input :filter
-    = f.input :final_url
 
   .form-actions
     = f.button :submit
