@@ -15,4 +15,6 @@ class Photo < ApplicationRecord
         wave
         wet_floor
     )
+    validates :name, presence: true
+    validates :base_url, presence: true   
 end
