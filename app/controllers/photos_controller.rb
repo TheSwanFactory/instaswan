@@ -86,7 +86,7 @@ class PhotosController < ApplicationController
        ilist.from_blob(blob)
        image = ilist.send(effect)
        
-       key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png}"
+       key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
        s3 = Aws::S3::Resource.new
        obj = S3_BUCKET.object(key)
        obj.put(body: image.to_blob)
