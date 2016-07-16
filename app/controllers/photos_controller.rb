@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'RMagick'
+
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
@@ -29,6 +32,7 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
+        apply_filter() if @photo.filter
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -70,6 +74,24 @@ class PhotosController < ApplicationController
 
     def set_s3_direct_post
        @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+     end
+     
+     def apply_filter()
+       effect = @photo.filter.to_sym
+       puts "Applying #{effect} to #{@photo}"
+       url = URI.parse("http:#{@photo.base_url}")
+       f = open(url)
+       blob = f.read
+       ilist = Magick::ImageList.new
+       ilist.from_blob(blob)
+       image = ilist.send(effect)
+       
+       key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
+       s3 = Aws::S3::Resource.new
+       obj = S3_BUCKET.object(key)
+       obj.put(body: image.to_blob, acl: 'public-read')
+       @photo.final_url = obj.public_url
+       @photo.save
      end
      
     # Never trust parameters from the scary internet, only allow the white list through.

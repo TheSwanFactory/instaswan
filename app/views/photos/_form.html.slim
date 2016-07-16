@@ -6,8 +6,8 @@
 
   .form-inputs
     = f.input :name
-    = f.input :base_url, :as => :file
-    = f.input :filter
+    = f.input :base_url, :as => :file, label: false
+    = f.input :filter, :as => :select, collection: Photo::EFFECTS, prompt: "Select Effect", label: false
 
   .form-actions
     = f.button :submit
