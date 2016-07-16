@@ -89,7 +89,7 @@ class PhotosController < ApplicationController
        key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
        s3 = Aws::S3::Resource.new
        obj = S3_BUCKET.object(key)
-       obj.put(body: image.to_blob)
+       obj.put(body: image.to_blob, acl: 'public-read')
        @photo.final_url = obj.public_url
        @photo.save
      end
