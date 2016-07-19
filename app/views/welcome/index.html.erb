@@ -1,4 +1,50 @@
-<h2>Hello World</h2>
+<h2>Welcome to Instaswan!</h2>
 <p>
-  The time is now: <%= Time.now %>
+  The time to upload a photo is now: <%= Time.now %>
 </p>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="links">
+    <a href="images/apple.png" title="Ernie" data-gallery>
+        <img src="images/ernie.png" alt="Ernie">
+    </a>
+    <a href="images/instaswan.jpg" title="Instaswan" data-gallery>
+        <img src="images/instaswan.jpg" alt="Instaswan">
+    </a>
+    <a href="images/swan.png" title="Swan" data-gallery>
+        <img src="images/swan.png" alt="Swan">
+    </a>
+</div>
