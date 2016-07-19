@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 gem 'aws-sdk', '~> 2'
 gem "rack-timeout"
@@ -27,23 +27,6 @@ gem 'jbuilder', '~> 2.0'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem 'rmagick'
-gem 'Bootstrap-Image-Gallery-rails'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -60,6 +43,9 @@ gem 'sendgrid'
 gem 'simple_form'
 gem 'slim-rails'
 
+gem 'rmagick'
+gem 'Bootstrap-Image-Gallery-rails'
+
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
@@ -68,6 +54,7 @@ group :development do
   gem 'haml2slim'
   gem 'html2haml'
   gem 'hub', :require=>nil
+  gem 'listen', '~> 3.0.5'
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_apps_testing'
@@ -75,10 +62,17 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console'
 end
 
 group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'#, "~> 3.4.1"
