@@ -1,5 +1,7 @@
 h1 Listing photos
 
+p = link_to 'Return to Home Page', root_path
+
 table
   thead
     tr
@@ -23,5 +25,5 @@ table
         td = link_to 'Destroy', photo, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
-
 = link_to 'New Photo', new_photo_path
+br
