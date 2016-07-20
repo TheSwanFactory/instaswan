@@ -1,6 +1,10 @@
+<center>
+<img src=<%= image_path "instaswan.jpg"%> class="photo" alt="Ernie">
 <h2>Welcome to Instaswan!</h2>
+</center>
+
 <p>
-  The time to upload a photo is now: <%= Time.now %>
+Browse the photos below or <%= link_to('upload your own', controller: 'photos', action: 'new') %>.
 </p>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
@@ -39,8 +43,8 @@
 
 <div id="links">
   <% @photos.each do |photo| %>
-    <a href=<%= photo.final_url %> title="<%= photo.name %> " data-gallery>
-        <img src=<%= photo.final_url %> class="photo gallery" alt="Ernie">
+    <a href=<%= photo.final_url %> title="<%= photo.name %>" data-gallery>
+        <img src=<%= photo.final_url %> class="photo gallery" alt="<%= photo.name %>">
     </a>
    <% end %>
 </div>
