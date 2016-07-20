@@ -41,9 +41,9 @@ gem 'devise_invitable'
 gem 'high_voltage', :github=>"thoughtbot/high_voltage"
 gem 'pg'
 gem 'pundit'
-gem 'sendgrid'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'sparkpost_rails'
 
 gem 'rmagick'
 gem 'Bootstrap-Image-Gallery-rails'
