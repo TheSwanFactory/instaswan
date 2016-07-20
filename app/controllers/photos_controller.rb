@@ -58,7 +58,25 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1
   # DELETE /photos/1.json
+  
+  def extract_key(url)
+    return URI.split(url)[5]
+  end
+
   def destroy
+    base_key = extract_key(@photo.base_url)
+    final_key = extract_key(@photo.final_url)
+    
+    #puts "base #{base_key} final #{final_key}"
+    S3_BUCKET.delete_objects({
+      delete: { # required
+        objects: [ # required
+          { key: base_key },
+          { key: final_key },
+        ],
+      }
+    })
+    
     @photo.destroy
     respond_to do |format|
       format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
@@ -87,7 +105,6 @@ class PhotosController < ApplicationController
        image = ilist.send(effect)
        
        key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
-       s3 = Aws::S3::Resource.new
        obj = S3_BUCKET.object(key)
        obj.put(body: image.to_blob, acl: 'public-read')
        @photo.final_url = obj.public_url
