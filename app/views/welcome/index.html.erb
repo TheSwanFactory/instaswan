@@ -38,13 +38,9 @@
 </div>
 
 <div id="links">
-    <a href=<%= image_path "ernie.png"%> title="Ernie" data-gallery>
-        <img src=<%= image_path "ernie.png"%> class="photo index" alt="Ernie">
+  <% @photos.each do |photo| %>
+    <a href=<%= photo.final_url %> title="<%= photo.name %> " data-gallery>
+        <img src=<%= photo.final_url %> class="photo gallery" alt="Ernie">
     </a>
-    <a href=<%= image_path "swan.png"%> title="Ernie" data-gallery>
-        <img src=<%= image_path "swan.png"%> class="photo index" alt="Ernie">
-    </a>
-    <a href=<%= image_path "instaswan.jpg"%> title="Ernie" data-gallery>
-        <img src=<%= image_path "instaswan.jpg"%> class="photo index" alt="Ernie">
-    </a>
+   <% end %>
 </div>
