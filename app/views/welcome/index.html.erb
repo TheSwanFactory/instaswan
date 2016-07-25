@@ -6,6 +6,9 @@
 <p>
 Browse the photos below or <%= link_to('upload your own', controller: 'photos', action: 'new') %>.
 </p>
+<p>
+Please <%= link_to('sign up', controller: 'devise_invitable/registrations', action: 'new') %> or <%= link_to('devise/sessions', controller: 'devise_invitable/registrations', action: 'new') %> to add your own photos.
+</p>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
