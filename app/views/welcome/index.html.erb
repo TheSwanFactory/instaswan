@@ -7,7 +7,13 @@
 Browse the photos below or <%= link_to('upload your own', controller: 'photos', action: 'new') %>.
 </p>
 <p>
-Please <%= link_to('sign up', controller: 'devise_invitable/registrations', action: 'new') %> or <%= link_to('login', controller: 'devise/sessions', action: 'new') %> to add your own photos.
+<% if user_signed_in? %>
+  Welcome!
+<% else %>
+  Please <%= link_to('sign up', controller: 'devise_invitable/registrations', action: 'new') %>
+  or <%= link_to('login', controller: 'devise/sessions', action: 'new') %> to add your own photos.
+<% end %>
+  
 </p>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
