@@ -4,6 +4,7 @@ require 'RMagick'
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+  before_filter :authenticate_user!
 
   # GET /photos
   # GET /photos.json
