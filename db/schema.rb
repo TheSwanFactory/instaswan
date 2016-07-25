@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722035014) do
+ActiveRecord::Schema.define(version: 20160725160209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -633,6 +633,8 @@ ActiveRecord::Schema.define(version: 20160722035014) do
     t.string   "final_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "products_product", force: :cascade do |t|
@@ -809,6 +811,8 @@ ActiveRecord::Schema.define(version: 20160722035014) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -866,6 +870,7 @@ ActiveRecord::Schema.define(version: 20160722035014) do
   add_foreign_key "installers_installerowner", "installer", name: "installers_installerowner_installer_id_5aa309fe_fk_installer_id"
   add_foreign_key "installers_tradereference", "installer", name: "installers_tradereference_installer_id_6f5b354e_fk_installer_id"
   add_foreign_key "invitations_invitation", "accounts_typeuser", column: "inviter_id", name: "invitations_invitat_inviter_id_83070e1a_fk_accounts_typeuser_id"
+  add_foreign_key "photos", "users"
   add_foreign_key "products_product", "banks_bank", column: "provider_id", name: "products_product_provider_id_adc09d6c_fk_banks_bank_id"
   add_foreign_key "projects_commercialproject", "customers_commercialcustomer", column: "customer_id", primary_key: "customer_ptr_id", name: "D0db7c69f6a52cf55c3aa5d2d9602831"
   add_foreign_key "projects_commercialproject", "installer", name: "projects_commercialprojec_installer_id_38c9407c_fk_installer_id"
