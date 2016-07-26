@@ -79,7 +79,7 @@ class PhotosController < ApplicationController
         ],
       }
     })
-    
+  
     @photo.destroy
     respond_to do |format|
       format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
@@ -88,31 +88,32 @@ class PhotosController < ApplicationController
   end
 
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
       @photo = Photo.find(params[:id])
     end
 
     def set_s3_direct_post
-       @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
-     end
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+    end
      
-     def apply_filter()
-       effect = @photo.filter.to_sym
-       puts "Applying #{effect} to #{@photo}"
-       url = URI.parse("http:#{@photo.base_url}")
-       f = open(url)
-       blob = f.read
-       ilist = Magick::ImageList.new
-       ilist.from_blob(blob)
-       image = ilist.send(effect)
+    def apply_filter()
+      effect = @photo.filter.to_sym
+      puts "Applying #{effect} to #{@photo}"
+      url = URI.parse("http:#{@photo.base_url}")
+      f = open(url)
+      blob = f.read
+      ilist = Magick::ImageList.new
+      ilist.from_blob(blob)
+      image = ilist.send(effect)
        
-       key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
-       obj = S3_BUCKET.object(key)
-       obj.put(body: image.to_blob, acl: 'public-read')
-       @photo.final_url = obj.public_url
-       @photo.save
-     end
+      key = "uploads/#{SecureRandom.uuid}/#{@photo.name}.png"
+      obj = S3_BUCKET.object(key)
+      obj.put(body: image.to_blob, acl: 'public-read')
+      @photo.final_url = obj.public_url
+      @photo.save
+    end
      
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
