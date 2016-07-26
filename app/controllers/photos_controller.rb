@@ -63,7 +63,7 @@ class PhotosController < ApplicationController
   # DELETE /photos/1.json
   
   def extract_key(url)
-    return URI.split(url)[5]
+    return URI.split(url)[5] rescue "no_key"
   end
 
   def destroy
