@@ -17,4 +17,6 @@ class Photo < ApplicationRecord
     )
     validates :name, presence: true
     validates :base_url, presence: true   
+    
+    belongs_to :user
 end
