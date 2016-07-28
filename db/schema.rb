@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708052433) do
+ActiveRecord::Schema.define(version: 20160725160209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -633,6 +633,8 @@ ActiveRecord::Schema.define(version: 20160708052433) do
     t.string   "final_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "products_product", force: :cascade do |t|
@@ -796,6 +798,25 @@ ActiveRecord::Schema.define(version: 20160708052433) do
     t.index ["owner_id"], name: "user_profiles_ownership_5e7b1936", using: :btree
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
   add_foreign_key "account_emailaddress", "accounts_typeuser", column: "user_id", name: "account_emailaddress_user_id_2c513194_fk_accounts_typeuser_id"
   add_foreign_key "account_emailconfirmation", "account_emailaddress", column: "email_address_id", name: "account_em_email_address_id_5b7f8c58_fk_account_emailaddress_id"
   add_foreign_key "accounts_typeuser_groups", "accounts_typeuser", column: "typeuser_id", name: "accounts_typeuser__typeuser_id_19d4be21_fk_accounts_typeuser_id"
@@ -849,6 +870,7 @@ ActiveRecord::Schema.define(version: 20160708052433) do
   add_foreign_key "installers_installerowner", "installer", name: "installers_installerowner_installer_id_5aa309fe_fk_installer_id"
   add_foreign_key "installers_tradereference", "installer", name: "installers_tradereference_installer_id_6f5b354e_fk_installer_id"
   add_foreign_key "invitations_invitation", "accounts_typeuser", column: "inviter_id", name: "invitations_invitat_inviter_id_83070e1a_fk_accounts_typeuser_id"
+  add_foreign_key "photos", "users"
   add_foreign_key "products_product", "banks_bank", column: "provider_id", name: "products_product_provider_id_adc09d6c_fk_banks_bank_id"
   add_foreign_key "projects_commercialproject", "customers_commercialcustomer", column: "customer_id", primary_key: "customer_ptr_id", name: "D0db7c69f6a52cf55c3aa5d2d9602831"
   add_foreign_key "projects_commercialproject", "installer", name: "projects_commercialprojec_installer_id_38c9407c_fk_installer_id"
